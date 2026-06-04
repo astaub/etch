@@ -17,7 +17,8 @@
       ```
       (Expect: no matches. `astaub/etch` self-references and "customer-agnostic"
       are fine.)
-- [ ] Examples are synthetic and pure ASCII; `node test/contract.test.mjs` passes.
+- [ ] Examples are synthetic and pure ASCII; `npm install && npm test` passes
+      (and `npm run typecheck`).
 - [ ] `LICENSE` present (MIT) with the correct copyright holder and year.
 - [ ] `README.md`, `CONTRIBUTING.md`, `CHANGELOG.md`, `AGENTS.md` are accurate and
       contain no internal-only context.

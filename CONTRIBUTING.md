@@ -1,8 +1,10 @@
 # Contributing to etch
 
 Thanks for your interest in etch. It is a small, deliberately boring project: a
-single Claude Code skill (`SKILL.md`) plus example artifacts. There is no build
-step and no runtime dependency — the skill *is* the markdown.
+single Claude Code skill (`SKILL.md`) plus example artifacts. The skill itself has
+no build step and no runtime dependency — the skill *is* the markdown. The only
+tooling is dev-only: a [vitest](https://vitest.dev) suite that holds the example
+artifacts to the output contract.
 
 ## Project shape
 
@@ -13,21 +15,23 @@ AGENTS.md                    # agent/host integration notes
 .claude-plugin/              # plugin + marketplace manifests for /plugin install
 examples/                    # one shipped artifact per shape (page/flow/component/copy/diff)
 references/                  # framing notes
-test/contract.test.mjs       # zero-dependency contract test for examples/
+test/contract.test.ts        # vitest contract test over examples/
+package.json                 # dev tooling only (vitest, typescript)
 ```
 
 ## Running the test
 
-The only test is a zero-dependency Node script that checks every file in
-`examples/` against the output contract documented in `SKILL.md`:
+The contract test (vitest) checks every file in `examples/` against the output
+contract documented in `SKILL.md`:
 
 ```bash
-node test/contract.test.mjs
+npm install   # first time only — pulls vitest + typescript
+npm test      # vitest run
+npm run typecheck
 ```
 
-It exits non-zero on any violation and prints the offending file and rule. No
-`npm install`, no toolchain — any recent Node (18+) works. CI runs the same
-command on every push and pull request.
+It fails on any violation and names the offending file and rule. CI runs
+`npm run typecheck` and `npm test` on every push and pull request.
 
 ## The output contract (do not break)
 
@@ -55,17 +59,19 @@ surface of the skill:
 ## Adding or changing an example
 
 1. Keep it synthetic and customer-agnostic.
-2. Match the contract above; run `node test/contract.test.mjs` until it passes.
+2. Match the contract above; run `npm test` until it passes.
 3. If you add a *new shape*, update `SKILL.md` (the shape table and output
-   format), add a covering example, and extend the test's shape list.
+   format), add a covering example, and extend the `SHAPES`/`FILE_SHAPE` lists in
+   `test/contract.test.ts`.
 
 ## Pull requests
 
 - Keep changes focused and the diff readable.
-- Run the contract test before opening the PR.
+- Run `npm test` (and `npm run typecheck`) before opening the PR.
 - Update `CHANGELOG.md` under `## [Unreleased]` for any user-visible change.
-- Do not introduce build steps, dependencies, network calls, or local file
-  writes into the core skill — those belong in host adapters, never in `etch`.
+- Keep the *skill* itself dependency-free: no build step, no network calls, and no
+  local file reads or writes in `SKILL.md`. Those belong in host adapters, never in
+  `etch`. Dev tooling (vitest, typescript) is fine — it never ships with the skill.
 
 ## License
 

@@ -9,11 +9,15 @@ follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Added
 - `.claude-plugin/marketplace.json` and `.claude-plugin/plugin.json` so the skill
   installs via `/plugin marketplace add` + `/plugin install`.
-- `test/contract.test.mjs` — a zero-dependency contract test that checks every
-  file in `examples/` against the `SKILL.md` output contract.
+- `test/contract.test.ts` — a vitest contract test that checks every file in
+  `examples/` against the `SKILL.md` output contract (run with `npm test`),
+  matching the testing setup used by sibling skills. Dev tooling
+  (`package.json`, `vitest.config.ts`, `tsconfig.json`) is dev-only and never
+  ships with the skill.
 - `CONTRIBUTING.md` documenting the project shape, the output contract, and how to
   run the test.
-- Continuous integration that runs the contract test on every push and PR.
+- Continuous integration that runs `npm run typecheck` and `npm test` on every
+  push and PR.
 
 ### Changed
 - Install instructions corrected: `/plugin install <git-url>` does not work;

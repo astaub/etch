@@ -2,7 +2,8 @@
 
 `etch` is a host-agnostic **agent skill** (markdown `SKILL.md`, no build, no
 network, no local writes). It turns a brief into ordered ASCII UI wireframe
-alternatives.
+alternatives. The repo carries a dev-only vitest suite (`npm test`) that holds the
+`examples/` artifacts to the output contract; it never ships with the skill.
 
 ## Install
 Claude Code, as a plugin marketplace:
