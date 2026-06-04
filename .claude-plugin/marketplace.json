@@ -1,0 +1,16 @@
+{
+  "name": "etch",
+  "owner": {
+    "name": "Andrew Staub"
+  },
+  "plugins": [
+    {
+      "name": "etch",
+      "source": "./",
+      "description": "Agent-native ASCII UI wireframe alternatives — ordered, plain-text design concepts.",
+      "version": "0.1.0",
+      "repository": "https://github.com/astaub/etch",
+      "license": "MIT"
+    }
+  ]
+}

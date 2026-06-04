@@ -48,7 +48,7 @@ Source: "The settings dashboard shows too much dense data in one view."
 - Title: Configurable card grid
 - Rationale: Give users control over what they see next, which lowers cognitive load on high-density pages.
 - Change list:
-  - Add “Customize cards” toggle in dashboard header
+  - Add "Customize cards" toggle in dashboard header
   - Introduce card-level visibility preferences
   - Persist visibility in user settings
   - File-level notes: `components/dashboard/GridManager.tsx`, `api/dashboard/settings` endpoint
@@ -58,7 +58,7 @@ Source: "The settings dashboard shows too much dense data in one view."
 ```text
 +--------------------------------------------+
 | Dashboard                                  |
-| [⚙ Customize cards]                       |
+| [* Customize cards]                       |
 +--------------------------------------------+
 | [Metric card] [Insight card] [Actions]     |
 | [Metric card] [Activity sparkline]         |

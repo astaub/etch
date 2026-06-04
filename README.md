@@ -2,6 +2,11 @@
 
 > Agent-native wireframe primitive — ordered ASCII UI alternatives in plain text.
 
+<!-- TODO(andrew): human-voice pass on the hero/pitch above before the public flip.
+     The tagline and the "Why agent-native wireframes" section are placeholders in
+     your voice — refine the framing/positioning. Everything below the pitch is
+     factual reference copy and should stay accurate. -->
+
 `etch` turns a product brief, finding, diff, or hypothesis into ordered UI
 alternatives that agents and humans can read without a design tool.
 
@@ -121,13 +126,23 @@ routing.
 
 ## Install (agent)
 
-Etch is a Claude Code skill. Install it into your agent's skill directory:
+Etch is a Claude Code skill, shipped as a single-plugin marketplace. Install it
+from the repo:
 
 ```text
-/plugin install https://github.com/astaub/etch.git
+/plugin marketplace add astaub/etch
+/plugin install etch@etch
 ```
 
-Then invoke it from any skill via `Skill(etch)` or run it directly with a brief.
+After install, invoke it as the slash command `/etch:etch`, or compose it from
+another skill via `Skill(etch)`.
+
+Prefer a no-plugin setup? Clone the skill straight into your skills directory and
+invoke it as `/etch`:
+
+```text
+git clone https://github.com/astaub/etch.git ~/.claude/skills/etch
+```
 
 ## Safety
 
@@ -137,6 +152,15 @@ Then invoke it from any skill via `Skill(etch)` or run it directly with a brief.
 - Credentials: none.
 - Private data: source resolution belongs in host adapters, not the core.
 - Examples: synthetic and customer-agnostic only.
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the project shape and the output
+contract. There is no build step; the one test is dependency-free:
+
+```bash
+node test/contract.test.mjs
+```
 
 ## License
 
