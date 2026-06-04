@@ -72,6 +72,9 @@ by review:
 3. If you add a *new shape*, update `SKILL.md` (the shape table and output
    format), add a covering example, and extend the `SHAPES`/`FILE_SHAPE` lists
    in `test/contract.test.ts`.
+4. Regenerate the README gallery if you touched an example's sketch:
+   `npm run gallery` (needs `rsvg-convert` — `brew install librsvg`). The gallery
+   cards in `assets/gallery/` are rendered from `examples/`, never hand-drawn.
 
 ## Pull requests
 

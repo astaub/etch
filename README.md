@@ -11,8 +11,25 @@ diagrams, component variants, copy tables, or before/after diffs. The output is
 ready for Claude Code, Cursor, Codex, Slack, email, pull requests, issue
 threads, and any agent host that can pass text around.
 
-No Figma dependency. No screenshots. No image pipeline. No external rendering
-service.
+etch's **output** is always plain text — no Figma, no screenshots in the
+artifact, no external rendering service. (The gallery images below are just that
+text, rendered on demand by a small script — `npm run gallery`.)
+
+## Gallery
+
+Every card below is real `etch` output: the ASCII sketch from an artifact in
+[`examples/`](examples/), dropped into a terminal frame by
+[`tools/render-gallery.mjs`](tools/render-gallery.mjs). The artifact itself stays
+plain text — the image is generated from it, not drawn by hand.
+
+<p align="center">
+  <img src="assets/gallery/page-before-after.png" width="740" alt="page shape — signup page before/after, two-step account creation"><br><br>
+  <img src="assets/gallery/flow-rearrange.png" width="415" alt="flow shape — checkout flow rearranged with a review-and-confirm branch">
+  <img src="assets/gallery/component-variants.png" width="505" alt="component shape — configurable dashboard card grid">
+</p>
+
+More shapes: [`diff`](assets/gallery/diff-shape.png) and
+[`copy`](assets/gallery/copy-variants.png).
 
 ## Why agent-native wireframes
 
