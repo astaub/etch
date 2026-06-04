@@ -156,10 +156,12 @@ git clone https://github.com/astaub/etch.git ~/.claude/skills/etch
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for the project shape and the output
-contract. There is no build step; the one test is dependency-free:
+contract. The skill itself has no build step; tests run under
+[vitest](https://vitest.dev):
 
 ```bash
-node test/contract.test.mjs
+npm install
+npm test
 ```
 
 ## License
