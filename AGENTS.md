@@ -5,9 +5,17 @@ network, no local writes). It turns a brief into ordered ASCII UI wireframe
 alternatives.
 
 ## Install
-Claude Code: `/plugin install https://github.com/astaub/etch.git` — clones this
-repo's `SKILL.md` (+ `examples/`, `references/`) into the agent's skill
-directory. There is no npm package and no build step; the skill is the markdown.
+Claude Code, as a plugin marketplace:
+
+```text
+/plugin marketplace add astaub/etch
+/plugin install etch@etch
+```
+
+This repo is a single-plugin marketplace (`.claude-plugin/marketplace.json` +
+`.claude-plugin/plugin.json`) with `SKILL.md` at the plugin root. There is no npm
+package and no build step; the skill is the markdown. To skip plugins entirely,
+clone the repo into `~/.claude/skills/etch` and invoke `/etch`.
 
 ## Compose from another skill
 Call it as a sub-skill via `Skill(etch)` (or the host's skill-dispatch
@@ -16,10 +24,10 @@ text in; the core generates alternatives. Source resolution, credentials,
 private URLs, and artifact writes stay in the **host adapter**, never the core.
 
 ## Distribution
-- **Now:** private repo (`astaub/etch`), consumed via `/plugin install` or
-  `git clone` into the skills dir.
-- **Goal:** public. The contract (`SKILL.md` shape, output format) is stable; a
-  public flip changes only visibility, not the interface.
+- Consumed via `/plugin marketplace add` + `/plugin install`, or by cloning the
+  repo into the agent's skills directory.
+- The contract (`SKILL.md` shape, output format) is stable and versioned in
+  `CHANGELOG.md`; distribution changes do not change the interface.
 
 ## Boundaries (do not break)
 - Output is **one fenced markdown block**, pure ASCII — no images/HTML/links.

@@ -94,10 +94,11 @@ No images, no screenshots, no external links, no HTML.
 ```markdown
 # Wireframe Alternatives: <brief summary>
 Shape: <shape>
-Source: <brief id or short summary>
 Track: <slug>
+Source: <brief id or short summary>
 
-## Alternative 1: <Title>
+## Alternative 1 (XS)
+- Title: <Title>
 - Rationale: ...
 - Change list:
   - ...
@@ -105,16 +106,22 @@ Track: <slug>
 - Effort: XS
 - How we'll know it worked: <metric> moves from <A> to >= <B> within <N> days
 
-## Alternative 2: ...
+## Alternative 2 (S)
+- Title: ...
 ...
 ```
+
+The header order is `Shape`, then `Track`, then `Source`. Each alternative heading
+carries its effort tag in parentheses, and repeats `- Effort:` in the body so the
+artifact is both skimmable and machine-checkable. See `examples/` for one shipped
+artifact per shape.
 
 ## Output quality gates
 
 - Keep all wording customer-agnostic.
 - Keep all file paths synthetic unless they came from trusted input.
 - Keep one brief sentence before the block:
-  - “Generated N alternatives from shape S using evidence from ...”
+  - "Generated N alternatives from shape S using evidence from ..."
 - If assumptions are missing, call them out explicitly and still output a conservative
   draft.
 - If `count` is omitted, default to `3`.

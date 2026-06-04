@@ -12,7 +12,7 @@ Source: "Many users drop during first signup step because fields feel long and t
   - Header copy -> add one-line trust signal below title
   - Primary CTA -> rename to `Create account` from `Start`
 - Effort: XS
-- How we'll know it worked: Signup start-to-complete rate increases from baseline `42%` to `>= 46%` within 7 days with support volume unchanged (±10%).
+- How we'll know it worked: Signup start-to-complete rate increases from baseline `42%` to `>= 46%` within 7 days with support volume unchanged (+/-10%).
 
 ```text
 +----------------------------------------------+
@@ -46,7 +46,7 @@ Source: "Many users drop during first signup step because fields feel long and t
 +----------------------------------------------------+
 |  LaunchFlow                                        |
 |  Start in under 60 seconds                         |
-|  • No setup fees  • Optional company details         |
+|  - No setup fees  - Optional company details         |
 +----------------------------------------------------+
 |  Step 1 of 2                                      |
 +----------------------------------------------------+
