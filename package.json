@@ -1,0 +1,26 @@
+{
+  "name": "@staub/etch",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Agent-native ASCII UI wireframe alternatives — ordered, plain-text design concepts.",
+  "license": "MIT",
+  "type": "module",
+  "keywords": [
+    "agents",
+    "wireframe",
+    "ascii",
+    "ui",
+    "design",
+    "skill"
+  ],
+  "author": "Staub",
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "typescript": "^5.0.0",
+    "vitest": "^3.0.0"
+  }
+}

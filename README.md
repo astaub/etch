@@ -1,11 +1,12 @@
-# Etch
+# etch ✏️ — Agent-native ASCII UI wireframe alternatives
 
-> Agent-native wireframe primitive — ordered ASCII UI alternatives in plain text.
+<!-- TODO(astaub): headline + positioning in your voice. The title/tagline, the
+     "Why agent-native wireframes" section, the emoji, and the name framing are
+     placeholders — refine them before the public flip. Everything below the
+     pitch is factual reference copy and should stay accurate. -->
 
-<!-- TODO(andrew): human-voice pass on the hero/pitch above before the public flip.
-     The tagline and the "Why agent-native wireframes" section are placeholders in
-     your voice — refine the framing/positioning. Everything below the pitch is
-     factual reference copy and should stay accurate. -->
+> Turn a brief into ordered ASCII UI wireframe alternatives — one plain-text
+> artifact, no design tool.
 
 `etch` turns a product brief, finding, diff, or hypothesis into ordered UI
 alternatives that agents and humans can read without a design tool.
@@ -32,6 +33,25 @@ implementation work:
 - change list with file-level notes when paths are known;
 - effort estimate for each alternative;
 - watch metric and threshold so the idea can be verified after shipping.
+
+## Install
+
+`etch` is a Claude Code skill, shipped as a single-plugin marketplace:
+
+```text
+/plugin marketplace add astaub/etch
+/plugin install etch@etch
+```
+
+After install, invoke it as the slash command `/etch:etch`, or compose it from
+another skill via `Skill(etch)`. Prefer a no-plugin setup? Clone the skill
+straight into your skills directory and invoke it as `/etch`:
+
+```text
+git clone https://github.com/astaub/etch.git ~/.claude/skills/etch
+```
+
+See [DISTRIBUTION.md](DISTRIBUTION.md) for the full install/public-flip runbook.
 
 ## Use when
 
@@ -64,20 +84,21 @@ reading local files, issue trackers, analytics systems, or private findings.
 | `copy` | Headlines, body copy, CTAs, empty or error states | Markdown tables |
 | `diff` | Before/after UI or code-adjacent layout change | Side-by-side text diff |
 
-## CLI shape
+## Invocation
 
-The public package is not published yet. This is the intended core interface:
+`etch` is a skill, not a published package — there is no binary to install. It
+takes a brief plus optional arguments:
 
 ```text
-etch --shape flow --count 3
-echo "Remove friction before creating an account" | etch --shape page --count 3
+Skill(etch) --shape flow --count 3
+echo "Remove friction before creating an account" | Skill(etch) --shape page
 ```
 
 Defaults:
 
 - `shape`: auto-detected from the brief unless `--shape` is set;
 - `count`: `3`;
-- `output`: stdout markdown block;
+- `output`: one markdown block;
 - local reads and writes: none in the core.
 
 ## Output contract
@@ -124,26 +145,6 @@ Claude Code, Cursor, Codex, or another agent host should:
 The core owns generation rules and output shape. Hosts own context resolution and
 routing.
 
-## Install (agent)
-
-Etch is a Claude Code skill, shipped as a single-plugin marketplace. Install it
-from the repo:
-
-```text
-/plugin marketplace add astaub/etch
-/plugin install etch@etch
-```
-
-After install, invoke it as the slash command `/etch:etch`, or compose it from
-another skill via `Skill(etch)`.
-
-Prefer a no-plugin setup? Clone the skill straight into your skills directory and
-invoke it as `/etch`:
-
-```text
-git clone https://github.com/astaub/etch.git ~/.claude/skills/etch
-```
-
 ## Safety
 
 - Local reads: none by default.
@@ -153,15 +154,24 @@ git clone https://github.com/astaub/etch.git ~/.claude/skills/etch
 - Private data: source resolution belongs in host adapters, not the core.
 - Examples: synthetic and customer-agnostic only.
 
+## Why "etch"
+
+<!-- TODO(astaub): one line on the name, in your voice. (To etch is to sketch a
+     form into a surface — here, a UI form into plain text.) -->
+
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for the project shape and the output
-contract. There is no build step; the one test is dependency-free:
+Governance lives in [AGENTS.md](AGENTS.md) (the agent-agnostic contract: propose
+via PR, no self-merge, never push `main`) and [CONTRIBUTING.md](CONTRIBUTING.md)
+(project shape + output contract). The skill itself has no build step; tests run
+under [vitest](https://vitest.dev):
 
 ```bash
-node test/contract.test.mjs
+npm install
+npm test
 ```
 
 ## License
 
 MIT
+
