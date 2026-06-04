@@ -1,4 +1,4 @@
-# etch ✏️ — Teach your agent to wireframe
+# ✏️ etch — Teach your agent to wireframe
 
 > Turn a brief into ordered ASCII UI wireframe alternatives — one plain-text
 > artifact, no design tool.
