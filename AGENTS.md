@@ -1,37 +1,86 @@
-# AGENTS.md — etch
+# Contributing agents & humans — etch ✏️
 
-`etch` is a host-agnostic **agent skill** (markdown `SKILL.md`, no build, no
-network, no local writes). It turns a brief into ordered ASCII UI wireframe
-alternatives. The repo carries a dev-only vitest suite (`npm test`) that holds the
-`examples/` artifacts to the output contract; it never ships with the skill.
+Turn a brief into ordered ASCII UI wireframe alternatives for experimentation.
 
-## Install
-Claude Code, as a plugin marketplace:
+This is a **public, open-source repository.** Both humans and coding agents
+read this file. It is the operating contract for anyone — person or agent —
+proposing a change. It is intentionally short; the full rules live in
+[CONTRIBUTING.md](CONTRIBUTING.md).
 
-```text
-/plugin marketplace add astaub/etch
-/plugin install etch@etch
+## Governance (read first)
+
+- **Contributors propose; maintainers merge.** Everyone — including agents
+  working autonomously — lands work through a pull request. **No one
+  self-merges.** The maintainer (`@astaub`) reviews and merges. An agent that
+  finishes its work opens a PR and **stops**.
+- **One concern per PR.** Small, reviewable, single-purpose. Split unrelated
+  changes.
+- **Never push to `main`.** Branch, commit, push the branch, open a PR. No
+  force-push to shared branches.
+- **Tests gate the PR.** A PR with red tests is not ready. Run the suite below
+  before you open it.
+- **Discuss large changes first.** Open an issue describing the change before
+  writing a big diff, so direction is agreed before code exists.
+
+## What this project is
+
+`etch` is a skill that turns a brief into ordered ASCII UI wireframe
+alternatives. It is a host-agnostic **agent skill** — a single Markdown
+`SKILL.md` (no build, no network, no local reads or writes) read by Claude Code
+and other agents. It is **agent-native**: the output is one plain-text artifact
+agents and humans can pass around without a design tool.
+
+`etch` is not a CLI or a library, so it has no JSON API of its own; its contract
+is its **output format** (see Conventions). The repo carries a dev-only vitest
+suite that holds the `examples/` artifacts to that contract — it never ships
+with the skill.
+
+## Build & test
+
+```sh
+npm install
+npm test
 ```
 
-This repo is a single-plugin marketplace (`.claude-plugin/marketplace.json` +
-`.claude-plugin/plugin.json`) with `SKILL.md` at the plugin root. There is no npm
-package and no build step; the skill is the markdown. To skip plugins entirely,
-clone the repo into `~/.claude/skills/etch` and invoke `/etch`.
+There is no build step — the skill is the Markdown. A change is not ready to
+propose until `npm test` (and `npm run typecheck`) is green locally.
 
-## Compose from another skill
-Call it as a sub-skill via `Skill(etch)` (or the host's skill-dispatch
-equivalent). The host resolves the brief/finding/diff text and passes scrubbed
-text in; the core generates alternatives. Source resolution, credentials,
-private URLs, and artifact writes stay in the **host adapter**, never the core.
+## Conventions
 
-## Distribution
-- Consumed via `/plugin marketplace add` + `/plugin install`, or by cloning the
-  repo into the agent's skills directory.
-- The contract (`SKILL.md` shape, output format) is stable and versioned in
-  `CHANGELOG.md`; distribution changes do not change the interface.
+- **The output contract is the interface.** `etch` returns **one fenced
+  Markdown block**, **pure ASCII** — no images, no HTML, no links. Alternatives
+  are ordered cheapest-first and each carries a title, rationale, change list,
+  effort (`XS`/`S`/`M`/`L`), and a watch-metric. This is the public surface;
+  changing it is a breaking change.
+- **No hidden defaults for paths/credentials.** The core never reads local
+  files, resolves project paths, or guesses a secret. Source resolution,
+  credentials, and writes live in the **host adapter**, never the skill.
+- **Customer-agnostic.** Examples and copy are synthetic — no real customer
+  names, no private data, no internal system references, no real file paths.
+- **Conventional commits.** `feat:`, `fix:`, `docs:`, `refactor:`, `test:`,
+  `chore:`. The subject line says what changed and why it matters.
+- **Keep the diff matched to the surrounding code** — its naming, comment
+  density, and idioms. Don't reformat unrelated lines.
+- **No dist:** etch ships as Markdown (`SKILL.md` + `examples/`). The only build
+  artifacts are dev-time test deps, which are gitignored and never shipped — see
+  [DISTRIBUTION.md](DISTRIBUTION.md).
 
-## Boundaries (do not break)
-- Output is **one fenced markdown block**, pure ASCII — no images/HTML/links.
-- All wording **customer-agnostic**; file paths synthetic unless from trusted input.
-- The core does **not** read local project files or write anything. That's the
-  host adapter's job.
+## Project layout
+
+```
+SKILL.md · examples/ · references/ · .claude-plugin/ (marketplace+plugin manifests) · test/ · package.json (dev-only)
+```
+
+## For autonomous agents specifically
+
+- Read this file and `CONTRIBUTING.md` before editing.
+- Make the change on a branch, run `npm test`, then open a PR with a clear body
+  (what changed, why, how it was verified) and **stop**. Do not merge, do not
+  deploy, do not push to `main`.
+- If the change is large or ambiguous, open an issue first and wait.
+- Leave unrelated dirty work untouched.
+
+## License
+
+`etch` is MIT-licensed. By contributing you agree your contribution is licensed
+under the same terms. See [LICENSE](LICENSE).

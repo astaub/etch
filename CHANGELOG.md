@@ -16,6 +16,9 @@ follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   ships with the skill.
 - `CONTRIBUTING.md` documenting the project shape, the output contract, and how to
   run the test.
+- `CLAUDE.md` pointer so Claude Code picks up the `AGENTS.md` contract.
+- `DISTRIBUTION.md` — the public-flip / install runbook, following the shared
+  Staub OSS-kit standard; its public-flip step runs the canonical `scrub-gate.sh`.
 - Continuous integration that runs `npm run typecheck` and `npm test` on every
   push and PR.
 
@@ -26,6 +29,13 @@ follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - `SKILL.md` output-format template now matches the shipped examples: header order
   is `Shape` / `Track` / `Source`, and each alternative uses
   `## Alternative N (EFFORT)` with a `- Title:` line.
+- Governance docs (`AGENTS.md`, `CONTRIBUTING.md`, `README.md`) conformed to the
+  shared Staub OSS-kit standard: contributors propose via PR, no self-merge,
+  never push `main`, one concern per PR, conventional commits.
+
+### Removed
+- `docs/public-flip-checklist.md` — superseded by `DISTRIBUTION.md` and the
+  canonical, systematic scrub gate (no more hand-rolled per-repo grep checklist).
 
 ### Fixed
 - Examples are now pure ASCII, as the contract requires (replaced curly quotes,
