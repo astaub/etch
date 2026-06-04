@@ -1,9 +1,4 @@
-# etch ✏️ — Agent-native ASCII UI wireframe alternatives
-
-<!-- TODO(astaub): headline + positioning in your voice. The title/tagline, the
-     "Why agent-native wireframes" section, the emoji, and the name framing are
-     placeholders — refine them before the public flip. Everything below the
-     pitch is factual reference copy and should stay accurate. -->
+# etch ✏️ — Teach your agent to wireframe
 
 > Turn a brief into ordered ASCII UI wireframe alternatives — one plain-text
 > artifact, no design tool.
@@ -156,8 +151,9 @@ routing.
 
 ## Why "etch"
 
-<!-- TODO(astaub): one line on the name, in your voice. (To etch is to sketch a
-     form into a surface — here, a UI form into plain text.) -->
+To etch is to cut a clean line into a surface. `etch` does that for UI ideas —
+it scratches the shape of a screen into plain text your agent can read, share,
+and act on.
 
 ## Contributing
 
