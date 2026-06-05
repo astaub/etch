@@ -6,6 +6,32 @@ follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Changed (0.2.0 — the beauty design system)
+- **The output contract is now a designed monospace language, not crude ASCII.**
+  `SKILL.md` gains a full "Design system" section: the alignment law (every row
+  padded to one identical width), a Menlo-safe glyph allowlist (rounded box-drawing
+  + shade/block ramps + furniture, weight = hierarchy), "Tailwind for the CLI"
+  spacing/sizing tokens (mobile-first widths: phone 40, desktop 104), a reusable
+  component library (cards, buttons, inputs, status, progress, tabs, table, nav,
+  charts), desktop composition, and the freeze-verify authoring gate.
+- **Both light (cream paper) and dark (terminal) skins are first-class** — identical
+  layout, only the ink color changes.
+- **Contract relaxed from "pure ASCII" to "printable ASCII + the Menlo-safe
+  allowlist."** The v0.1 pure-ASCII rule was a paste-safety choice; the allowlisted
+  box-drawing glyphs are universally monospace-safe (terminals, Slack, GitHub) and
+  are what make the wireframes read as designed. The banned diagonals `╱ ╲ ╳`
+  (not single-cell in Menlo) are rejected by the contract test. Design rationale:
+  `docs/research/2026-06-04-wireframe-design-language.md`; component spec:
+  `docs/research/2026-06-04-component-library-spec.md`; proof:
+  `docs/research/samples/`.
+- `test/contract.test.ts` enforces the allowlist (replacing the pure-ASCII check)
+  and explicitly bans the diagonals.
+- All five shipped `examples/` artifacts re-drawn in the new design language
+  (aligned phone frames, heading blocks + dashed body, weighted buttons, dashed
+  placeholders, block-ramp sparklines) and the README gallery regenerated from
+  them. Added `tools/check-widths.mjs` (`npm run widths`) — a fast companion to
+  freeze-verify that flags any ragged framed run.
+
 ### Added
 - `.claude-plugin/marketplace.json` and `.claude-plugin/plugin.json` so the skill
   installs via `/plugin marketplace add` + `/plugin install`.

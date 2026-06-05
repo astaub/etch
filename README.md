@@ -17,8 +17,8 @@ text, rendered on demand by a small script — `npm run gallery`.)
 
 ## Gallery
 
-Every card below is real `etch` output: the ASCII sketch from an artifact in
-[`examples/`](examples/), dropped into a terminal frame by
+Every card below is real `etch` output: the designed monospace sketch from an
+artifact in [`examples/`](examples/), dropped into a terminal frame by
 [`tools/render-gallery.mjs`](tools/render-gallery.mjs). The artifact itself stays
 plain text — the image is generated from it, not drawn by hand.
 
@@ -122,7 +122,15 @@ Each alternative includes:
 - change list, with file-level notes when filenames are known;
 - effort: `XS`, `S`, `M`, or `L`;
 - "How we'll know it worked" metric and threshold;
-- one ASCII or table-based sketch.
+- one designed monospace sketch (or table) — aligned, airy, obviously a mockup.
+
+The sketches use a small, deliberate design language (see `SKILL.md` §
+"Design system"): rounded box-drawing on a Menlo-safe glyph allowlist, "Tailwind
+for the CLI" spacing/sizing tokens, a reusable component library, and one law —
+every row padded to one identical width so frames never go ragged. Every sketch
+reads in both a light (cream paper) and dark (terminal) skin with no layout
+change. It is still just text — no Figma, no screenshots, universally
+monospace-safe in terminals, Slack, and GitHub.
 
 The alternatives are ordered from least invasive to most invasive so an agent can
 choose a safe first move or escalate deliberately.

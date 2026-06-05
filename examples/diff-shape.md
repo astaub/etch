@@ -13,11 +13,18 @@ Source: "Users click delete by mistake because delete action is too close to sav
 - How we'll know it worked: Mistaken delete attempts per 1,000 settings sessions drop from `6.0` to `<= 4.0` and successful saves stay within 2% of baseline.
 
 ```text
-BEFORE                         AFTER
--------------------------------------------
-| [Delete account]             | [Save changes]
-| [Save changes]               | [Delete account]
--------------------------------------------
+   BEFORE                              AFTER
+
+╭─ Account ──────────────────╮    ╭─ Account ──────────────────╮
+│                            │    │                            │
+│  ┏━━━━━━━━━━━━━━━━━━━━━━┓  │    │  ┏━━━━━━━━━━━━━━━━━━━━━━┓  │
+│  ┃ Delete account       ┃  │    │  ┃ Save changes         ┃  │
+│  ┗━━━━━━━━━━━━━━━━━━━━━━┛  │    │  ┗━━━━━━━━━━━━━━━━━━━━━━┛  │
+│  ╭──────────────────────╮  │    │  ╭──────────────────────╮  │
+│  │ Save changes         │  │    │  │ Delete account       │  │
+│  ╰──────────────────────╯  │    │  ╰──────────────────────╯  │
+│                            │    │                            │
+╰────────────────────────────╯    ╰────────────────────────────╯
 ```
 
 ## Alternative 2 (S)
@@ -31,12 +38,19 @@ BEFORE                         AFTER
 - How we'll know it worked: Mistaken delete attempts fall from `6.0` to `<= 2.5` and completion rate for legitimate deletes changes by less than `3%`.
 
 ```text
-BEFORE                                      AFTER
----------------------------------------+-----------------------------------
-[Delete account]                         | [Delete account]
-                                        |   -> [Confirm deletion modal]
-                                        |      [Cancel] [Delete permanently]
----------------------------------------+-----------------------------------
+   BEFORE                              AFTER
+
+╭─ Account ──────────────────╮    ╭─ Account ──────────────────╮
+│                            │    │                            │
+│  ╭──────────────────────╮  │    │  ╭──────────────────────╮  │
+│  │ Delete account       │  │    │  │ Delete account       │  │
+│  ╰──────────────────────╯  │    │  ╰──────────────────────╯  │
+│                            │    │            ↓               │
+│                            │    │  ┌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌┐  │
+│                            │    │  ╎ This cannot be undone╎  │
+│                            │    │  └╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌┘  │
+╰────────────────────────────╯    │  [ Cancel ]   [ Delete ]   │
+                                  ╰────────────────────────────╯
 ```
 
 ## Alternative 3 (M)
@@ -51,16 +65,19 @@ BEFORE                                      AFTER
 - How we'll know it worked: Mistaken delete attempts drop to `<= 1.0` and complaint tickets about accidental account loss are `0` for 14 days of shipping.
 
 ```text
-BEFORE                                              AFTER
------------------------------------------+--------------------------------------------
-[Notifications] [Billing] [Account]        | [Notifications] [Billing] [Account]
-[Delete account]                         | [Danger Zone]
-                                          +------------------------------+
-                                          | [Go to Danger Zone]          |
-                                          +------------------------------+
-                                                      |
-                                                      v
-                                          [Delete account] -> confirm checkbox -> modal
------------------------------------------+--------------------------------------------
+   BEFORE                              AFTER
+
+╭─ Settings ─────────────────╮    ╭─ Settings ─────────────────╮
+│  Notifications  Billing    │    │  Notifications  Billing    │
+│                            │    │                            │
+│  ╭──────────────────────╮  │    │  ┌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌┐  │
+│  │ Delete account       │  │    │  ╎ ★ Danger zone        ╎  │
+│  ╰──────────────────────╯  │    │  └╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌┘  │
+│                            │    │            ↓               │
+│                            │    │  Go to danger zone  →      │
+│                            │    │  acknowledge  →  modal     │
+│                            │    │                            │
+│                            │    ╰────────────────────────────╯
+╰────────────────────────────╯                                  
 ```
 ```
