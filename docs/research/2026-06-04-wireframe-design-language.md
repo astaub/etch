@@ -37,8 +37,8 @@ is each convention and its monospace translation:
 | Balsamiq convention | What it signals | Monospace translation |
 |---|---|---|
 | Hand-drawn "marker" boxes | This is a sketch | Box-drawing frames `╭─╮ │ ╰─╯` — clean but clearly diagrammatic |
-| Squiggle / greek text | "copy goes here", don't read it | Shaded word-chunks `▒▒▒▒ ▒▒▒▒▒▒ ▒▒▒` — reads as words without committing to words |
-| Heavier scribble for headings | Visual hierarchy | Solid blocks `███████` for headings, lighter `▒▒▒` for body |
+| Squiggle / greek text | "copy goes here", don't read it | Light dashed text-lines `┄┄┄┄┄┄┄┄┄┄`, ragged last line — reads as a line of copy without committing to words |
+| Heavier scribble for headings | Visual hierarchy | Solid blocks `███████` for headings, light dashed lines for body |
 | Rectangle with an X | Image placeholder | A **dashed** region `┌╌╌╌┐ ╎ image ╎ └╌╌╌┘` (see the freeze note below on why not a literal X) |
 | `[Button]` chrome | Clickable | Boxed button; **line weight = priority** (heavy `┏━┓` = primary, light `╭─╮` = secondary) |
 | Greyed / dashed elements | Placeholder / disabled | Dashed borders `┌╌╌┐` mark any "to be filled" region |
@@ -49,11 +49,16 @@ everything else.** Labels, buttons, and sample metrics are real words (they carr
 intent). Body copy and images are deliberately rough (they carry only position).
 That mix is what makes a wireframe read as a wireframe.
 
-The shaded-word-chunk trick is the keystone. `▒▒▒▒ ▒▒▒▒▒▒ ▒▒▒ ▒▒▒▒▒▒▒` instantly
-reads as "a line of text," with word-like rhythm, but nobody mistakes it for real
-copy. It is the monospace equivalent of Balsamiq's squiggle — and it happens to
-be *beautiful* in the same way `@staub/charts` sparkbars are, because it is the
-same family of glyphs.
+The body-text placeholder is the keystone, and getting it *beautiful* (not just
+functional) took iteration. The first attempt used shaded word-chunks
+(`▒▒▒▒ ▒▒▒▒▒▒ ▒▒▒`) — functional, but they render as noisy gray static that
+fights the rest of the frame. A focused render-and-look pass over six candidates
+([`samples/lab2.png`](./samples/lab2.png)) settled it: **light dashed text-lines
+`┄┄┄┄┄┄┄┄`, with a ragged last line, paired with a solid `███` heading bar.**
+The dashed lines read instantly as "a paragraph of copy," stay airy instead of
+heavy, and are visually distinct from the solid frame — clearly a mockup, and
+clean. Headings stay solid blocks so hierarchy is obvious at a glance. This is the
+single change that took the samples from "aligned" to "beautiful."
 
 ---
 
@@ -143,10 +148,10 @@ The freeze-verify step earned its place immediately:
 2. **`╲ ╱ ╳` are not single-cell in Menlo.** The diagonal box-drawing glyphs
    (U+2571–2573) render *wider than one cell*, so the literal "rectangle with an
    X" image placeholder broke alignment. The glyph audit
-   ([`samples/glyphs`](./samples/)) shows 16 diagonals pushing a trailing string
-   ~3 cells right of 16 pipes. **Resolution:** the image placeholder is a dashed
-   box with a centered label — no diagonals. The diagonals are banned from the
-   glyph allowlist (see the spec).
+   ([`samples/glyphs.png`](./samples/glyphs.png)) shows 16 diagonals pushing a
+   trailing string ~3 cells right of 16 pipes (`align C` vs `align B`).
+   **Resolution:** the image placeholder is a dashed box with a centered label —
+   no diagonals. The diagonals are banned from the glyph allowlist (see the spec).
 
 Every other glyph we use — `╭─╮│╰╯├┤┬┴┼ ┏━┓┃┗┛ ┌╌┐╎ ░▒▓█ ▁▂▃▄▅▆▇█ ☰ ⌕ ● ○ ✓ › → ↑ ↓ ★ ◆ •`
 — audited as true single-cell width in Menlo. That allowlist *is* the safe

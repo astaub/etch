@@ -12,12 +12,13 @@ const bodyW = W - 2 - T.gutter * 2;
 
 function buildSignup() {
   return frame(W, [
-    ...headline(bodyW, 0.5),
+    ...headline(bodyW, 0.42),
     '',
-    ...ipsum(bodyW, 1, G.sh.full),
     ...ipsum(bodyW, 2),
     '',
+    '',
     ...field('Email', 'you@example.com', bodyW),
+    '',
     '',
     ...cta('Create account', bodyW, 'primary'),
     '',

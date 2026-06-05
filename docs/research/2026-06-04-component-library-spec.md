@@ -104,9 +104,10 @@ the frame's content width. Rendered catalog: [`samples/01-components.png`](./sam
 ```
 ╭─ Card title ─────────────────────────────────╮
 │                                              │
-│  ████ ███████ █                              │   heading placeholder
+│  ██████████████████████                      │   heading = solid block
 │                                              │
-│  ▒▒▒▒ ▒▒▒▒▒▒▒ ▒▒▒ ▒▒▒▒▒▒ ▒▒▒▒▒ ▒▒▒▒▒▒▒▒ ▒▒   │   body placeholder
+│  ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄     │   body = light dashed lines,
+│  ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄                       │   ragged last line
 │                                              │
 │  ╭──────╮                                    │
 │  │ Open │                                    │
@@ -114,6 +115,14 @@ the frame's content width. Rendered catalog: [`samples/01-components.png`](./sam
 │                                              │
 ╰──────────────────────────────────────────────╯
 ```
+
+**Placeholder vocabulary (the keystone — chosen by render-and-look, see
+[`samples/lab2.png`](./samples/lab2.png)):**
+- **Heading** = solid block bar `███████` (bold, obvious hierarchy).
+- **Body copy** = light dashed lines `┄┄┄┄┄┄`, ragged last line. *Not* shaded
+  blocks `▒▒▒` — those read as noisy static. Dashed lines stay airy and clearly
+  signal "copy goes here."
+- **Sample data** (metrics, table cells) = real-ish values (`12,480`, `$1,200`).
 
 ### 3.2 Buttons — line weight = hierarchy
 
@@ -182,7 +191,7 @@ Dashed border alone signals "placeholder." No diagonal X (not Menlo-safe).
 
 ```
 ( J )  Jane Cooper                    2m  ›
-       ▒▒▒▒ ▒▒▒▒▒▒ ▒▒▒ ▒▒▒▒
+       ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
 ```
 
 ### 3.9 Table — header divider, numeric columns right-aligned
@@ -228,6 +237,12 @@ A responsive screen is the *same components* at a different width: a metric card
 is `w-phone` content on mobile and ~25 cells in a 3-up row on desktop. The tokens
 don't change; the composition does.
 
+**Borderless columns** (kanban, lists-of-cards): not every region needs a frame.
+A column is a header line + a full-width rule + stacked cards — no outer box.
+Nesting framed cards inside a framed column produces noisy double-walls; drop the
+column border and let the cards carry the structure. See
+[`06-desktop-board.png`](./samples/06-desktop-board.png) (very wide, 124).
+
 ---
 
 ## 5. Samples (the proof)
@@ -238,6 +253,7 @@ don't change; the composition does.
 | [`02-mobile-signup.png`](./samples/02-mobile-signup.png) | signup / onboarding | phone (40) | paper + [dark](./samples/02-mobile-signup-dark.png) |
 | [`03-mobile-feed.png`](./samples/03-mobile-feed.png) | inbox / feed | phone (40) | paper |
 | [`04-desktop-dashboard.png`](./samples/04-desktop-dashboard.png) | analytics dashboard | desktop (104) | paper + [dark](./samples/04-desktop-dashboard-dark.png) |
+| [`06-desktop-board.png`](./samples/06-desktop-board.png) | kanban board | **very wide (124)** | paper |
 | [`05-ascii-vs-unicode.png`](./samples/05-ascii-vs-unicode.png) | the contract decision | phone | paper |
 
 Regenerate any sample:

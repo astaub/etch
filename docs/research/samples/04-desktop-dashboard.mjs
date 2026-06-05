@@ -1,7 +1,7 @@
 // Desktop dashboard — VERY WIDE (104). Same tokens as mobile, more columns.
 import {
   T, G, frame, divider, hr, ipsum, meter, status, avatar, tabs, joinH, pad,
-  render,
+  sparkline, render,
 } from './kit.mjs';
 
 const W = T.w.desktop; // 104
@@ -27,22 +27,16 @@ const sidebar = frame(SB, [
   hr(SB - 2 - T.gutter * 2),
   '',
   avatar('AS') + ' Andrew',
-  G.sh[2].repeat(10),
+  '┄┄┄┄┄┄┄┄┄┄',
 ], { title: 'Menu' });
 
 // ---- metric card ----
-const metric = (label, value, delta, spark) => {
-  const w = 25;
-  return frame(w, [
-    value,
-    delta,
-    spark,
-  ], { title: label, padY: 0 });
-};
+const metric = (label, value, delta, spark, w) =>
+  frame(w, [value, delta, '', spark], { title: label, padY: 1 });
 const cards = joinH([
-  { lines: metric('Active users', '12,480', '↑ 12%  vs last wk', '▂▃▅▆▇▆█▅▆▇'), width: 25 },
-  { lines: metric('Conversion', '3.1%', '↑ 0.4pp', '▃▄▃▅▄▆▅▇▆█'), width: 25 },
-  { lines: metric('Revenue', '$48.2k', '↓ 2%  vs last wk', '▆▇▅▆▄▅▃▄▂▃'), width: 26 },
+  { lines: metric('Active users', '12,480', '↑ 12%  vs last wk', sparkline(19, 0), 25), width: 25 },
+  { lines: metric('Conversion', '3.1%', '↑ 0.4pp', sparkline(19, 1.6), 25), width: 25 },
+  { lines: metric('Revenue', '$48.2k', '↓ 2%  vs last wk', sparkline(20, 3.1), 26), width: 26 },
 ], 2);
 
 // ---- bar chart card ----
@@ -64,7 +58,7 @@ const chart = frame(CH, [
 ], { title: 'Signups — last 12 months' });
 
 // ---- table card ----
-const tcol = [28, 14, 14, 18]; // name, plan, status, mrr
+const tcol = [29, 14, 14, 18]; // name, plan, status, mrr — sums to width 80
 const tInner = tcol.reduce((a, b) => a + b, 0) + tcol.length + 1; // borders
 const tcell = (s, w, al) => ' ' + pad(s, w - 2, al) + ' ';
 const trow = (a, b, c, d) =>

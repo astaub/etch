@@ -1,12 +1,11 @@
 // Mobile feed / inbox — phone width (40). Nav bar, tabs, list, compose CTA.
-import { T, G, frame, tabs, listItem, cta, avatar, hr, pad, render } from './kit.mjs';
+import { T, G, frame, tabs, listItem, cta, avatar, hr, statusBar, pad, render } from './kit.mjs';
 
 const W = T.w.phone;        // 40
 const bodyW = W - 2 - T.gutter * 2; // 34
 
-const statusBar = '9:41' + ' '.repeat(bodyW - 4 - 9) + '▂▄▆  ⌃  ▮▮▮';
 const navRow = G.menu + '   Inbox' +
-  pad(G.search + '   ' + avatar('A'), bodyW - (G.menu + '   Inbox').length, 'right');
+  pad(G.search + '    ' + avatar('A'), bodyW - (G.menu + '   Inbox').length, 'right');
 
 const tabRow = tabs([
   { label: 'All', active: true },
@@ -26,7 +25,8 @@ items.forEach((it, i) => {
 });
 
 const content = [
-  statusBar,
+  statusBar(bodyW),
+  '',
   navRow,
   '',
   ...tabRow,

@@ -22,9 +22,9 @@ freeze "$in" -o "$out" \
   --theme "$syntax" \
   --font.family "Menlo" \
   --font.size 14 \
-  --line-height 1.2 \
-  --padding 28 \
-  --margin 24 \
+  --line-height 1.4 \
+  --padding 40 \
+  --margin 28 \
   --background "$bg" \
   --border.radius 10 \
   --border.width 1 \

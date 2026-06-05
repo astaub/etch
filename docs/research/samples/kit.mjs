@@ -130,32 +130,40 @@ export function divider(width, weight = 'light') {
 // them into frame() content, or into joinH for multi-column desktop layouts.
 // ---------------------------------------------------------------------------
 
-// placeholder text. words = rough chunk pattern that reads as "copy goes here".
-export function ipsum(width, lines = 2, shade = G.sh[2]) {
-  // deterministic word-chunk pattern, ragged last line
-  const chunks = [4, 7, 3, 6, 5, 8, 2, 5, 4, 6];
+// body-copy placeholder = light dashed "text lines", ragged last line. Reads as
+// "copy goes here" — obviously a mockup, clean and airy (NOT a noisy shade block).
+const LINE_FRACS = [0.96, 0.88, 0.93, 0.84, 0.9];
+export function ipsum(width, lines = 2, glyph = '┄') {
   const out = [];
   for (let r = 0; r < lines; r++) {
-    let line = '';
-    let i = r * 3;
-    const target = r === lines - 1 ? Math.floor(width * 0.6) : width;
-    while (len(line) < target) {
-      const sep = line ? 1 : 0;
-      const room = target - len(line) - sep;
-      if (room <= 0) break;
-      const w = chunks[i % chunks.length];
-      const word = repeat(shade, Math.min(w, room));
-      line += (line ? ' ' : '') + word;
-      i++;
-    }
-    out.push(line);
+    const frac = r === lines - 1 ? 0.55 : LINE_FRACS[r % LINE_FRACS.length];
+    out.push(repeat(glyph, Math.max(3, Math.round(width * frac))));
   }
   return out;
 }
 
-// heading placeholder (chunky solid)
-export const headline = (width, frac = 0.55) =>
-  ipsum(Math.floor(width * frac), 1, G.sh.full);
+// heading placeholder = one bold solid block bar (clear hierarchy vs body).
+export const headline = (width, frac = 0.5) =>
+  [repeat(G.sh.full, Math.max(3, Math.round(width * frac)))];
+
+// a smooth sparkline of n cells using the block ramp (reads as a trend).
+// phase varies the shape so sibling sparklines differ.
+export function sparkline(n = 14, phase = 0) {
+  const ramp = '▁▂▃▄▅▆▇█';
+  let s = '';
+  for (let i = 0; i < n; i++) {
+    const a = Math.sin(i * 0.7 + phase) + Math.sin(i * 0.31 + 1 + phase * 1.7);
+    const idx = Math.round(((a + 2) / 4) * (ramp.length - 1));
+    s += ramp[Math.max(0, Math.min(ramp.length - 1, idx))];
+  }
+  return s;
+}
+
+// clean phone status bar sized to a content width.
+export function statusBar(bodyW, time = '9:41') {
+  const right = '▮▮▮▮  100%';
+  return time + repeat(' ', Math.max(1, bodyW - len(time) - len(right))) + right;
+}
 
 // inline button. variant: 'primary'(heavy box), 'secondary'(light box), 'ghost'
 export function button(label, variant = 'secondary') {

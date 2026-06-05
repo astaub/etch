@@ -1,0 +1,9 @@
+box     ╭─╮│╰╯├┤┬┴┼  ┏━┓┃┗┛┳┻  ┌╌┐╎└┘
+shade   ░▒▓█ ▁▂▃▄▅▆▇█ ▮▯
+icons   ☰ ⌕ ● ○ ✓ › → ↑ ↓ ★ ◆ • ┄
+
+banned  ╲ ╱ ╳   (NOT single-cell in Menlo — break alignment)
+
+align A ☰⌕●○✓›→↑↓★◆•┄┏┓┗  ABCDEFGHIJ   <- safe glyphs
+align B ||||||||||||||||  ABCDEFGHIJ   <- 16 pipes (reference)
+align C ╲╱╳╲╱╳╲╱╳╲╱╳╲╱╳╲  ABCDEFGHIJ   <- diagonals drift right (BAD)
