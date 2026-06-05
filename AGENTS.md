@@ -48,10 +48,14 @@ propose until `npm test` (and `npm run typecheck`) is green locally.
 ## Conventions
 
 - **The output contract is the interface.** `etch` returns **one fenced
-  Markdown block**, **pure ASCII** — no images, no HTML, no links. Alternatives
-  are ordered cheapest-first and each carries a title, rationale, change list,
-  effort (`XS`/`S`/`M`/`L`), and a watch-metric. This is the public surface;
-  changing it is a breaking change.
+  Markdown block** — no images, no HTML, no links. Sketches use **printable ASCII
+  plus the Menlo-safe glyph allowlist** (rounded box-drawing + shade/block ramps +
+  furniture; the diagonals `╱ ╲ ╳` are banned because they are not single-cell).
+  Every frame obeys the alignment law (one identical visible width per row) and
+  reads in both the light and dark skins. Alternatives are ordered cheapest-first
+  and each carries a title, rationale, change list, effort (`XS`/`S`/`M`/`L`), and a
+  watch-metric. The full design system lives in `SKILL.md` (§ "Design system"). This
+  is the public surface; changing it is a breaking change.
 - **No hidden defaults for paths/credentials.** The core never reads local
   files, resolves project paths, or guesses a secret. Source resolution,
   credentials, and writes live in the **host adapter**, never the skill.
