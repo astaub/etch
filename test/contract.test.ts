@@ -44,10 +44,14 @@ const ALLOWED_GLYPHS = new Set([
 // wider than one cell in Menlo and break alignment.
 const BANNED_GLYPHS = new Set(['╱', '╲', '╳']);
 
-// A character is contract-safe iff it is ASCII or an allowlisted glyph.
+// A character is contract-safe iff it is PRINTABLE ASCII (0x20–0x7E) or an
+// allowlisted glyph. Control characters — notably the tab (0x09), whose visible
+// width is variable — are rejected: they pass an "ASCII" check but silently break
+// the alignment law. The contract is "printable ASCII + the allowlist" (SKILL.md
+// §2 / AGENTS.md). Newlines never reach this function (callers split on '\n').
 function isContractSafe(ch: string): boolean {
   const cp = ch.codePointAt(0)!;
-  if (cp <= 0x7f) return true;
+  if (cp >= 0x20 && cp <= 0x7e) return true;
   return ALLOWED_GLYPHS.has(ch);
 }
 

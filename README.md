@@ -17,8 +17,8 @@ text, rendered on demand by a small script — `npm run gallery`.)
 
 ## Gallery
 
-Every card below is real `etch` output: the ASCII sketch from an artifact in
-[`examples/`](examples/), dropped into a terminal frame by
+Every card below is real `etch` output: the designed monospace sketch from an
+artifact in [`examples/`](examples/), dropped into a terminal frame by
 [`tools/render-gallery.mjs`](tools/render-gallery.mjs). The artifact itself stays
 plain text — the image is generated from it, not drawn by hand.
 
