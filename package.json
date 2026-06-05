@@ -16,7 +16,8 @@
   "author": "Staub",
   "scripts": {
     "test": "vitest run",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "gallery": "node tools/render-gallery.mjs"
   },
   "devDependencies": {
     "@types/node": "^20",

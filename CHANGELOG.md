@@ -19,6 +19,9 @@ follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - `CLAUDE.md` pointer so Claude Code picks up the `AGENTS.md` contract.
 - `DISTRIBUTION.md` — the public-flip / install runbook, following the shared
   Staub OSS-kit standard; its public-flip step runs the canonical `scrub-gate.sh`.
+- README gallery: terminal-style cards (`assets/gallery/`) rendered from the real
+  `examples/` artifacts by `tools/render-gallery.mjs` (`npm run gallery`). The
+  output stays plain text — the images are generated from it, not hand-drawn.
 - Continuous integration that runs `npm run typecheck` and `npm test` on every
   push and PR.
 
