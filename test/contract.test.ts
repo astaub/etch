@@ -15,6 +15,40 @@ const examplesDir = join(here, '..', 'examples');
 const SHAPES = ['page', 'flow', 'component', 'copy', 'diff'] as const;
 const EFFORTS = ['XS', 'S', 'M', 'L'];
 
+// The Menlo-safe glyph allowlist (SKILL.md §2 "the ink"). etch relaxed its v0.1
+// "pure ASCII" rule to "printable ASCII + this allowlist": every glyph below is
+// audited single-cell in Menlo, so frames stay aligned. Anything outside the set
+// is rejected — notably the diagonals (U+2571–2573), which are NOT single-cell
+// and silently break alignment.
+const ALLOWED_GLYPHS = new Set([
+  // frame · light (default)
+  '╭', '╮', '╰', '╯', '─', '│',
+  // junctions
+  '├', '┤', '┬', '┴', '┼',
+  // frame · heavy (emphasis)
+  '┏', '┓', '┗', '┛', '━', '┃', '┳', '┻',
+  // frame · dashed (placeholder)
+  '┌', '┐', '└', '┘', '╌', '╎',
+  // shade ramp
+  '░', '▒', '▓', '█',
+  // block ramp (sparkline / meter)
+  '▁', '▂', '▃', '▄', '▅', '▆', '▇',
+  // furniture
+  '☰', '⌕', '●', '○', '✓', '›', '→',
+  '↑', '↓', '★', '◆', '•', '▮', '▯', '┄',
+]);
+
+// Explicitly banned even though they belong to the frame family — they render
+// wider than one cell in Menlo and break alignment.
+const BANNED_GLYPHS = new Set(['╱', '╲', '╳']);
+
+// A character is contract-safe iff it is ASCII or an allowlisted glyph.
+function isContractSafe(ch: string): boolean {
+  const cp = ch.codePointAt(0)!;
+  if (cp <= 0x7f) return true;
+  return ALLOWED_GLYPHS.has(ch);
+}
+
 // Filename stem -> expected shape, so a renamed/miscategorized example is caught.
 const FILE_SHAPE: Record<string, string> = {
   'page-before-after': 'page',
@@ -77,11 +111,25 @@ for (const file of files) {
       expect(trimmed[trimmed.length - 1]).toBe('```');
     });
 
-    it('is pure ASCII', () => {
-      const nonAscii = lines
-        .map((line, i) => (/[^\x00-\x7F]/.test(line) ? i + 1 : 0))
+    it('uses only Menlo-safe glyphs (ASCII + allowlist)', () => {
+      const offenders: string[] = [];
+      lines.forEach((line, i) => {
+        for (const ch of line) {
+          if (!isContractSafe(ch)) {
+            const banned = BANNED_GLYPHS.has(ch) ? ' (banned: not single-cell)' : '';
+            offenders.push(`line ${i + 1}: ${JSON.stringify(ch)} U+${ch.codePointAt(0)!.toString(16).toUpperCase().padStart(4, '0')}${banned}`);
+            break;
+          }
+        }
+      });
+      expect(offenders, `off-allowlist glyph(s):\n${offenders.join('\n')}`).toEqual([]);
+    });
+
+    it('never uses the banned diagonals', () => {
+      const hits = lines
+        .map((line, i) => ([...line].some((ch) => BANNED_GLYPHS.has(ch)) ? i + 1 : 0))
         .filter(Boolean);
-      expect(nonAscii, `non-ASCII on line(s) ${nonAscii.join(', ')}`).toEqual([]);
+      expect(hits, `banned diagonal (U+2571–2573) on line(s) ${hits.join(', ')}`).toEqual([]);
     });
 
     it('has no images, HTML, or links', () => {
