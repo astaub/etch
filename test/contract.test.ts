@@ -36,6 +36,8 @@ const ALLOWED_GLYPHS = new Set([
   // furniture
   '☰', '⌕', '●', '○', '✓', '›', '→',
   '↑', '↓', '★', '◆', '•', '▮', '▯', '┄',
+  // typographic punctuation (single-cell in Menlo)
+  '·', '—', '…',
 ]);
 
 // Explicitly banned even though they belong to the frame family — they render

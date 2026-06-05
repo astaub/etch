@@ -15,19 +15,27 @@ Source: "Users often abandon after entering payment details."
 - How we'll know it worked: Checkout start-to-payment-step drop improves from `55%` to `>= 61%` with no increase in payment errors.
 
 ```text
-START
-  |
-  v
-[Choose Plan]
-  |
-  v
-[Review Plan] ----> [See price details]
-  |
-  v
-[Add Payment] ----> [Use saved method]
-  |
-  v
-[Confirm] --> [Success]
+╭─ Checkout · review-first ─────────────╮
+│                                       │
+│  ●━━━●━━━●───○   payment is last      │
+│                                       │
+╰───────────────────────────────────────╯
+
+   ╭───────────────────╮
+   │ Choose plan       │
+   ╰───────────────────╯
+            ↓
+   ╭───────────────────╮
+   │ Review plan       │   →  see price details
+   ╰───────────────────╯
+            ↓
+   ╭───────────────────╮
+   │ Add payment       │   →  use a saved method
+   ╰───────────────────╯
+            ↓
+   ┏━━━━━━━━━━━━━━━━━━━┓
+   ┃ Confirm  →  ✓     ┃
+   ┗━━━━━━━━━━━━━━━━━━━┛
 ```
 
 ## Alternative 2 (S)
@@ -42,22 +50,27 @@ START
 - How we'll know it worked: Checkout completion rises from `24%` to `>= 27%` and help-center exits per visit drops by `25%`.
 
 ```text
-START
-  |
-  v
-[Choose Plan]
-  |
-  v
-[Trust Strip]
-  |-- money-back | instant receipt | support SLA
-  v
-[Payment]
-  |
-  v
-[Confirm]
-  |
-  v
-SUCCESS
+╭─ Checkout · trust checkpoint ─────────╮
+│                                       │
+│  ●━━━●━━━○───○   Step 2 of 4          │
+│                                       │
+╰───────────────────────────────────────╯
+
+   ╭───────────────────╮
+   │ Choose plan       │
+   ╰───────────────────╯
+            ↓
+   ┌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌┐
+   ╎ Trust strip       ╎   money-back · receipt · SLA
+   └╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌┘
+            ↓
+   ╭───────────────────╮
+   │ Payment           │
+   ╰───────────────────╯
+            ↓
+   ┏━━━━━━━━━━━━━━━━━━━┓
+   ┃ Confirm  →  ✓     ┃
+   ┗━━━━━━━━━━━━━━━━━━━┛
 ```
 
 ## Alternative 3 (M)
@@ -74,19 +87,28 @@ SUCCESS
 - How we'll know it worked: Checkout completion improves from `24%` to `>= 30%` with conversion to plan selection unchanged and no increase in payment attempts.
 
 ```text
-START
-  |
-  v
-[Pick Plan] ----> [Select Billing]
-  |
-  v
-[Review & Confirm]
-  |--> [Need edit?] -> [Back to Plan]
-  |--> [Looks good] -> [Add Payment]
-  v
-[Payment] -> [Receipt]
-  |
-  v
-SUCCESS
+╭─ Checkout · intent split ─────────────╮
+│                                       │
+│  ●━━━●───○───○   delayed payment      │
+│                                       │
+╰───────────────────────────────────────╯
+
+   ╭───────────────────╮
+   │ Pick plan         │   →  select billing
+   ╰───────────────────╯
+            ↓
+   ╭───────────────────╮
+   │ Review & confirm  │
+   ╰───────────────────╯
+        ↓             ↓
+   need edit?     looks good
+        ↓             ↓
+   back to plan   ╭───────────────────╮
+                  │ Add payment       │
+                  ╰───────────────────╯
+                          ↓
+                  ┏━━━━━━━━━━━━━━━━━━━┓
+                  ┃ Receipt  →  ✓     ┃
+                  ┗━━━━━━━━━━━━━━━━━━━┛
 ```
 ```

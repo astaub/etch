@@ -26,6 +26,11 @@ follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   `docs/research/samples/`.
 - `test/contract.test.ts` enforces the allowlist (replacing the pure-ASCII check)
   and explicitly bans the diagonals.
+- All five shipped `examples/` artifacts re-drawn in the new design language
+  (aligned phone frames, heading blocks + dashed body, weighted buttons, dashed
+  placeholders, block-ramp sparklines) and the README gallery regenerated from
+  them. Added `tools/check-widths.mjs` (`npm run widths`) — a fast companion to
+  freeze-verify that flags any ragged framed run.
 
 ### Added
 - `.claude-plugin/marketplace.json` and `.claude-plugin/plugin.json` so the skill

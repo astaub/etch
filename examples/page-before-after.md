@@ -15,19 +15,32 @@ Source: "Many users drop during first signup step because fields feel long and t
 - How we'll know it worked: Signup start-to-complete rate increases from baseline `42%` to `>= 46%` within 7 days with support volume unchanged (+/-10%).
 
 ```text
-+----------------------------------------------+
-|  LaunchFlow | Create account in 60 seconds    |
-+----------------------------------------------+
-|  [Minimal hero]                              |
-|  "Start in one minute, expand later"         |
-+----------------------------------------------+
-|  [Email ___________________]                  |
-|  [Password ________________]                 |
-|  [Create account]                            |
-+----------------------------------------------+
-|  "No credit card required"                   |
-|  [Sign in instead]                           |
-+----------------------------------------------+
+╭─ Sign up ────────────────────────────╮
+│                                      │
+│  9:41                    ▮▮▮▮  100%  │
+│                                      │
+│  ██████████████                      │
+│                                      │
+│  ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄   │
+│  ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄                 │
+│                                      │
+│  Email                               │
+│  ╭────────────────────────────────╮  │
+│  │ you@example.com                │  │
+│  ╰────────────────────────────────╯  │
+│                                      │
+│  Password                            │
+│  ╭────────────────────────────────╮  │
+│  │ ••••••••                       │  │
+│  ╰────────────────────────────────╯  │
+│                                      │
+│  ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓  │
+│  ┃         Create account         ┃  │
+│  ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛  │
+│                                      │
+│  No credit card required             │
+│                                      │
+╰──────────────────────────────────────╯
 ```
 
 ## Alternative 2 (S)
@@ -43,18 +56,33 @@ Source: "Many users drop during first signup step because fields feel long and t
 - How we'll know it worked: Signup start-to-complete rises from `42%` to `>= 48%` and first-time return rate at 24h increases from `20%` to `>= 23%`.
 
 ```text
-+----------------------------------------------------+
-|  LaunchFlow                                        |
-|  Start in under 60 seconds                         |
-|  - No setup fees  - Optional company details         |
-+----------------------------------------------------+
-|  Step 1 of 2                                      |
-+----------------------------------------------------+
-|  [Email ___________________]                        |
-|  [Password ________________]                       |
-|  [Create account] [Add optional details]           |
-|  By continuing you accept terms                    |
-+----------------------------------------------------+
+╭─ Sign up ────────────────────────────╮
+│                                      │
+│  9:41                    ▮▮▮▮  100%  │
+│                                      │
+│  ██████████████████                  │
+│  Start in under 60 seconds           │
+│                                      │
+│  ✓ No setup fees                     │
+│  ✓ Finish in under a minute          │
+│                                      │
+│  ●───○   Step 1 of 2                 │
+│                                      │
+│  Email                               │
+│  ╭────────────────────────────────╮  │
+│  │ you@example.com                │  │
+│  ╰────────────────────────────────╯  │
+│                                      │
+│  Password                            │
+│  ╭────────────────────────────────╮  │
+│  │ ••••••••                       │  │
+│  ╰────────────────────────────────╯  │
+│                                      │
+│  ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓  │
+│  ┃         Create account         ┃  │
+│  ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛  │
+│                                      │
+╰──────────────────────────────────────╯
 ```
 
 ## Alternative 3 (M)
@@ -69,14 +97,22 @@ Source: "Many users drop during first signup step because fields feel long and t
 - How we'll know it worked: Signup complete (all steps) increases from `18%` to `>= 23%` and onboarding completion within 7 days rises by `+5pp`.
 
 ```text
-Step 1                                  Step 2
-+------------------------------+    +------------------------------+
-|  Create account             |    |  Why are you joining?         |
-|  Email ___________________   |    |  [Product] [Ops] [Marketing]  |
-|  Password ________________   |    |  [Create account now]          |
-|  [Create account]            |    |  [Skip for now]               |
-|                             |    |                               |
-|  Why now: 1 screen only      |    |  Progress: 2/2                |
-+------------------------------+    +------------------------------+
+╭─ Step 1 · Account ─────────╮    ╭─ Step 2 · Why now? ────────╮
+│                            │    │                            │
+│  ████████████              │    │  Pick one — or skip        │
+│                            │    │                            │
+│  ╭──────────────────────╮  │    │  ○ Product                 │
+│  │ you@example.com      │  │    │  ○ Operations              │
+│  ╰──────────────────────╯  │    │  ○ Marketing               │
+│                            │    │                            │
+│  ╭──────────────────────╮  │    │  ┏━━━━━━━━━━━━━━━━━━━━━━┓  │
+│  │ ••••••••             │  │    │  ┃       Continue       ┃  │
+│  ╰──────────────────────╯  │    │  ┗━━━━━━━━━━━━━━━━━━━━━━┛  │
+│                            │    │  Skip for now  →           │
+│  ┏━━━━━━━━━━━━━━━━━━━━━━┓  │    │                            │
+│  ┃    Create account    ┃  │    ╰────────────────────────────╯
+│  ┗━━━━━━━━━━━━━━━━━━━━━━┛  │                                  
+│                            │                                  
+╰────────────────────────────╯                                  
 ```
 ```

@@ -106,6 +106,7 @@ Frame · dashed (placeholder)┌ ┐ └ ┘ ╌ ╎
 Shade ramp (density/fill)   ░ ▒ ▓ █
 Block ramp (spark/meter)    ▁ ▂ ▃ ▄ ▅ ▆ ▇ █
 Furniture                   ☰  ⌕  ●  ○  ✓  ›  →  ↑  ↓  ★  ◆  •  ▮  ▯  ┄
+Typographic punctuation     ·  —  …
 ```
 
 **Weight carries meaning.** Light frame = default. Heavy frame `┏━┓` = the *one*

@@ -17,7 +17,8 @@
   "scripts": {
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
-    "gallery": "node tools/render-gallery.mjs"
+    "gallery": "node tools/render-gallery.mjs",
+    "widths": "node tools/check-widths.mjs examples/*.md"
   },
   "devDependencies": {
     "@types/node": "^20",
