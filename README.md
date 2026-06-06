@@ -7,9 +7,9 @@
 alternatives that agents and humans can read without a design tool.
 
 It emits one copy-pasteable markdown artifact with ASCII page mocks, flow
-diagrams, component variants, copy tables, or before/after diffs. The output is
-ready for Claude Code, Cursor, Codex, Slack, email, pull requests, issue
-threads, and any agent host that can pass text around.
+diagrams, single-component sketches, copy tables, or before/after diffs. The
+output is ready for Claude Code, Cursor, Codex, Slack, email, pull requests,
+issue threads, and any agent host that can pass text around.
 
 etch's **output** is always plain text — no Figma, no screenshots in the
 artifact, no external rendering service. (The gallery images below are just that
@@ -25,7 +25,7 @@ plain text — the image is generated from it, not drawn by hand.
 <p align="center">
   <img src="assets/gallery/page-before-after.png" width="740" alt="page shape — signup page before/after, two-step account creation"><br><br>
   <img src="assets/gallery/flow-rearrange.png" width="415" alt="flow shape — checkout flow rearranged with a review-and-confirm branch">
-  <img src="assets/gallery/component-variants.png" width="505" alt="component shape — configurable dashboard card grid">
+  <img src="assets/gallery/component-variants.png" width="505" alt="component shape — password reset modal alternatives">
 </p>
 
 More shapes: [`diff`](assets/gallery/diff-shape.png) and
@@ -92,7 +92,7 @@ reading local files, issue trackers, analytics systems, or private findings.
 | --- | --- | --- |
 | `page` | Page-level alternatives | Boxed sections with hierarchy |
 | `flow` | Step, journey, branch, or checkout changes | Arrow paths and branch labels |
-| `component` | Cards, buttons, inputs, widgets, nav | Variant grid and composition notes |
+| `component` | Buttons, cards, inputs, modals, widgets, nav | One clean labeled component per alternative |
 | `copy` | Headlines, body copy, CTAs, empty or error states | Markdown tables |
 | `diff` | Before/after UI or code-adjacent layout change | Side-by-side text diff |
 
@@ -143,8 +143,8 @@ The staged examples cover the five shipped shapes:
   alternatives.
 - [`flow-rearrange.md`](examples/flow-rearrange.md) — checkout flow
   rearrangement.
-- [`component-variants.md`](examples/component-variants.md) — dashboard card
-  variants.
+- [`component-variants.md`](examples/component-variants.md) — password reset
+  modal component alternatives.
 - [`copy-variants.md`](examples/copy-variants.md) — pricing copy alternatives.
 - [`diff-shape.md`](examples/diff-shape.md) — settings deletion before/after
   diff.
@@ -195,4 +195,3 @@ npm test
 ## License
 
 MIT
-

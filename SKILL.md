@@ -49,7 +49,7 @@ Auto-detect unless `--shape` is explicitly set.
 | mentions "step", "journey", "checkout", "screen to screen", "redirect", or "branch" | `flow` |
 | includes copy blocks, headlines, body copy, CTA, button text, empty/error copy | `copy` |
 | includes `+`/`-` hunks, `@@`, `before/after`, or file rename/move context | `diff` |
-| includes "component", "card", "button", "input", "nav", or "widget" with no flow words | `component` |
+| includes "component", "card", "button", "input", "modal", "dialog", "nav", or "widget" with no flow words | `component` |
 | feature or product goal text without clear control-flow or code-diff markers | `page` |
 
 If none match:
@@ -68,6 +68,13 @@ Generate `N` alternatives (default `3`):
 3. larger redesign
 
 Order from minimal to most expensive effort. Never collapse them into one.
+
+For `component`, each alternative is still one idea in the ordered set, but the
+sketch itself renders **one single component**. Do not turn a component request
+into a page, dashboard, or multi-card system unless the brief explicitly asks for
+composition. If the requested family is known, keep every alternative in that
+family; for example, three button treatments, not a button plus a card plus a
+modal.
 
 ---
 
@@ -220,6 +227,23 @@ Email
 
 Search uses `⌕`: `│ ⌕  Search …                  │`.
 
+**Modal / dialog — centered panel, title, body, actions:**
+
+```
+╭─ Confirm changes ───────────────────────────╮
+│                                             │
+│  ████████████████                           │
+│                                             │
+│  ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄                 │
+│  ┄┄┄┄┄┄┄┄┄┄┄┄                               │
+│                                             │
+│  Cancel →        ┏━━━━━━━━━━━━━━┓           │
+│                  ┃ Save changes ┃           │
+│                  ┗━━━━━━━━━━━━━━┛           │
+│                                             │
+╰─────────────────────────────────────────────╯
+```
+
 **Status · badges · avatars · toggles:**
 
 ```
@@ -325,11 +349,88 @@ Render each shape in the design language above — beautiful, aligned, both skin
   real labels). Mobile = one `w-phone` column; desktop = composed frames.
 - **flow**: screen frames joined by `→` with branch labels; include a failure
   branch when relevant. Use a stepper (`●━━━●───○`) for progress.
-- **component**: a variant grid built from the component library, plus quick
-  composition notes — weight = hierarchy, dashed = placeholder.
+- **component**: one clean, labeled component per alternative, selected from the
+  component artifact templates below. Show the component at its natural width,
+  include state labels when helpful, and avoid page chrome.
 - **copy**: table-driven copy alternatives (the table component).
 - **diff**: before/after frames side-by-side, same widths, so the change is the
   only thing that moves.
+
+## Component artifact mode
+
+Use `component` when the brief asks for one UI control or reusable surface:
+button, card, input, modal/dialog, nav, widget, badge, or a small stateful
+control. The artifact answers "what should this component look like?" rather
+than "where does it sit on the page?"
+
+Rules:
+
+- Pick one component family from the brief and keep all alternatives in that
+  family.
+- Render a single component per sketch. A modal may contain its own title, body,
+  and buttons because those are part of the modal, but do not add surrounding
+  page layout.
+- Label variants directly in the sketch when there are states or sizes:
+  `default`, `hover`, `disabled`, `error`, `loading`, `empty`, `selected`.
+- Prefer concrete sample labels and values over lorem ipsum. Use dashed body
+  lines only for copy placeholders.
+- Keep component sketches compact: `button` and `input` usually fit in
+  `w-phone`; `card` and `modal` may use `w-phone-lg` or `w-tablet` when the
+  component needs breathing room.
+
+Templates:
+
+```text
+Button
+default             hover               disabled
+╭────────────╮      ┏━━━━━━━━━━━━┓      ╭────────────╮
+│ Save draft │      ┃ Save draft ┃      │ Save draft │
+╰────────────╯      ┗━━━━━━━━━━━━┛      ╰────────────╯
+```
+
+```text
+Card
+╭─ Plan summary ─────────────────────────────╮
+│                                            │
+│  █████████████████                         │
+│                                            │
+│  ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄                         │
+│  ┄┄┄┄┄┄┄┄┄                                 │
+│                                            │
+│  [ Details ]                       Open →  │
+│                                            │
+╰────────────────────────────────────────────╯
+```
+
+```text
+Input
+Email
+╭────────────────────────────────╮
+│ you@example.com                │
+╰────────────────────────────────╯
+
+error
+╭────────────────────────────────╮
+│ not-an-email                   │
+╰────────────────────────────────╯
+● Enter a valid email address
+```
+
+```text
+Modal
+╭─ Delete item ──────────────────────────────╮
+│                                            │
+│  █████████████                             │
+│                                            │
+│  ┄┄┄┄┄┄┄┄┄┄┄┄┄┄                            │
+│  ┄┄┄┄┄┄┄┄                                  │
+│                                            │
+│  Cancel →         ┏━━━━━━━━━━━━━━┓         │
+│                   ┃ Delete item  ┃         │
+│                   ┗━━━━━━━━━━━━━━┛         │
+│                                            │
+╰────────────────────────────────────────────╯
+```
 
 ## Annotate each alternative
 
